@@ -2,7 +2,7 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:music_app/pages/discover_page.dart';
 import 'package:music_app/pages/favourite_page.dart';
-import 'package:music_app/screens/music_page.dart';
+import 'package:music_app/pages/music_page.dart';
 
 class HomeScreen extends StatefulWidget {
   _HomeState createState() => _HomeState();

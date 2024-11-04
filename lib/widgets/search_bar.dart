@@ -30,7 +30,7 @@ class MySearchBar extends StatelessWidget {
           decoration: InputDecoration(
             filled: true,
             fillColor:
-                Colors.white.withOpacity(0.12), // Semi-transparent background
+                Colors.white.withOpacity(0.06), // Semi-transparent background
             prefixIcon: const Icon(
               Icons.search,
               size: 30,
@@ -41,7 +41,8 @@ class MySearchBar extends StatelessWidget {
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(25),
               borderSide: BorderSide(
-                color: Colors.white.withOpacity(0.5), // Semi-transparent border
+                color: const Color.fromARGB(204, 192, 181, 181)
+                    .withOpacity(0.5), // Semi-transparent border
                 width: 2,
               ),
             ),

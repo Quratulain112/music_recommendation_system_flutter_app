@@ -14,88 +14,18 @@ class FavouritePage extends StatelessWidget {
           image: AssetImage("assets/glitter_two.jfif"),
         ),
       ),
-      child: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+      child: Padding(
+        padding: EdgeInsets.all(5),
         child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.only(top: 15),
-              child: Text(
-                "Favourite Songs",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Colors.white),
-              ),
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),  
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
+            Text("All Songs"),
+            Expanded(
+                child: ListView.builder(
+              itemCount: 2,
+              itemBuilder: (context, index) {
+                return MyListItem(song_name: "NAME", artist_name: "Artist");
+              },
+            ))
           ],
         ),
       ),

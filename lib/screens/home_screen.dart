@@ -27,7 +27,8 @@ class _HomeState extends State<HomeScreen> {
     return Scaffold(
       key: _scaffoldKey,
       drawer: Drawer(
-        backgroundColor: const Color.fromARGB(153, 39, 16, 60),
+        backgroundColor: const Color.fromARGB(245, 39, 16, 60),
+        // backgroundColor: LinearGradient(colors: colors),
         width: 240,
         child: Padding(
           padding: EdgeInsets.only(left: 30),
@@ -98,6 +99,7 @@ class _HomeState extends State<HomeScreen> {
         ),
       ),
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 40, 4, 46),
         leading: GestureDetector(
           onTap: () {
@@ -111,14 +113,6 @@ class _HomeState extends State<HomeScreen> {
           "Discover",
           style: TextStyle(color: Colors.white),
         ),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.menu,
-                color: Colors.white,
-              ))
-        ],
       ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavyBar(

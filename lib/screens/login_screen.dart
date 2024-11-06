@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/utils/api_service.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -8,6 +9,25 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  void _login() async {
+    bool success = await ApiService.login(
+        _usernameController.text, _passwordController.text);
+    if (!mounted) {
+      return null;
+    }
+    if (success) {
+      Navigator.pushReplacementNamed(context, "/hm");
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Faild to login"),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,16 +39,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 fit: BoxFit.cover, image: AssetImage("assets/loginbag.jpg"))),
         child: Column(
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(top: 150, left: 35, right: 35),
               child: TextField(
+                controller: _usernameController,
+                style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(labelText: "Your Username"),
               ),
             ),
-            const Padding(
+            Padding(
               padding:
                   EdgeInsets.only(top: 12, left: 35, right: 35, bottom: 40),
               child: TextField(
+                controller: _passwordController,
+                style: TextStyle(color: Colors.white),
                 obscureText: true,
                 decoration: InputDecoration(labelText: "Your Password"),
               ),
@@ -36,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.purple),
               onPressed: () {
-                Navigator.pushNamed(context, "/hm");
+                _login();
               },
               child: const Text(
                 "Login",

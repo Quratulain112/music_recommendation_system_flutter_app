@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class StartScreen extends StatelessWidget {
   @override
@@ -34,7 +35,12 @@ class StartScreen extends StatelessWidget {
               child: ElevatedButton(
                   style:
                       ElevatedButton.styleFrom(backgroundColor: Colors.purple),
-                  onPressed: () {
+                  onPressed: () async {
+                    SharedPreferences pref =
+                        await SharedPreferences.getInstance();
+                    if (pref.containsKey("token")) {
+                      Navigator.pushReplacementNamed(context, "/hm");
+                    }
                     Navigator.pushNamed(context, "/lg");
                   },
                   child: Wrap(

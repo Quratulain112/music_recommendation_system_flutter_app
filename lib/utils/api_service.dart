@@ -82,7 +82,7 @@ class ApiService {
     }
 
     final response = await http.get(
-      Uri.parse('${baseUrl}favorites/'),
+      Uri.parse('${baseUrl}checkLogin/'),
       headers: {
         'Authorization': 'Token $token',
         'Content-Type': 'application/json',

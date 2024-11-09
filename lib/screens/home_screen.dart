@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:music_app/pages/discover_page.dart';
 import 'package:music_app/pages/favourite_page.dart';
 import 'package:music_app/pages/music_page.dart';
+import 'package:music_app/utils/api_service.dart';
 
 class HomeScreen extends StatefulWidget {
   _HomeState createState() => _HomeState();
@@ -16,10 +17,26 @@ class _HomeState extends State<HomeScreen> {
     FavouritePage(),
   ];
   int _currentIndex = 0;
+  String username = "Default\nName";
   void _updateindex(index) {
     setState(() {
       _currentIndex = index;
     });
+  }
+
+  Future<void> getUsername() async {
+    try {
+      dynamic userDetails = await ApiService.getUserName();
+      setState(() {
+        username = "${userDetails["firstname"]}\n${userDetails["lastname"]}";
+      });
+    } catch (e) {}
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUsername();
   }
 
   @override
@@ -37,8 +54,13 @@ class _HomeState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CircleAvatar(
+                child: Icon(
+                  color: const Color.fromARGB(255, 40, 2, 66),
+                  Icons.person,
+                  size: 55,
+                ),
                 radius: 45,
-                backgroundColor: Colors.pink,
+                backgroundColor: const Color.fromARGB(255, 189, 80, 228),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 10, bottom: 8),
@@ -48,13 +70,16 @@ class _HomeState extends State<HomeScreen> {
                 ),
               ),
               Text(
-                "User \nName",
+                username,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 30,
                     color: Colors.white),
               ),
               ListTile(
+                onTap: () {
+                  setState(() {});
+                },
                 leading: Icon(
                   Icons.home,
                   color: Colors.white70,
@@ -102,13 +127,20 @@ class _HomeState extends State<HomeScreen> {
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 40, 4, 46),
         leading: GestureDetector(
-          onTap: () {
-            _scaffoldKey.currentState?.openDrawer();
-          },
-          child: CircleAvatar(
-            backgroundColor: Colors.pink,
-          ),
-        ),
+            onTap: () {
+              _scaffoldKey.currentState?.openDrawer();
+            },
+            child: Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: CircleAvatar(
+                child: Icon(
+                  color: const Color.fromARGB(255, 40, 2, 66),
+                  Icons.person,
+                  size: 25,
+                ),
+                backgroundColor: const Color.fromARGB(255, 189, 80, 228),
+              ),
+            )),
         title: Text(
           "Discover",
           style: TextStyle(color: Colors.white),

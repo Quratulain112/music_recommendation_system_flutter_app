@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/screens/register_sceen.dart';
 import 'package:music_app/utils/api_service.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -30,6 +31,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final UserDetails? userobject =
+        ModalRoute.of(context)!.settings.arguments as UserDetails?;
+    _usernameController.text = (userobject == null) ? "" : userobject.username;
+    _passwordController.text = (userobject == null) ? "" : userobject.password;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(

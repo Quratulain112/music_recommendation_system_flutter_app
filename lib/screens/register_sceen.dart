@@ -32,6 +32,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          title: Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              spacing: 15,
+              children: [
+                CircleAvatar(
+                  radius: 26,
+                  backgroundImage: AssetImage("assets/logo.jfif"),
+                ),
+                Text(
+                  "MusicApp",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ]),
           leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -40,7 +55,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Icons.arrow_back,
                 color: Colors.white,
               )),
-          backgroundColor: Colors.transparent,
         ),
         body: Container(
           decoration: BoxDecoration(
@@ -50,7 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           )),
           child: Padding(
               padding: EdgeInsets.only(
-                top: 50,
+                top: 100,
                 left: 20,
                 right: 20,
               ),

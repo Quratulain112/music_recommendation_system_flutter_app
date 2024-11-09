@@ -32,6 +32,22 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          title: Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              spacing: 15,
+              children: [
+                CircleAvatar(
+                  radius: 26,
+                  backgroundImage: AssetImage("assets/logo.jfif"),
+                ),
+                Text(
+                  "MusicApp",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ])),
       // TODO: ADD LOGO HERE
       body: Container(
         decoration: const BoxDecoration(

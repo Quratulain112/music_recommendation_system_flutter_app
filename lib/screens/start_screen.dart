@@ -1,7 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/utils/api_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class StartScreen extends StatelessWidget {
+class StartScreen extends StatefulWidget {
+  const StartScreen({super.key});
+
+  @override
+  State<StartScreen> createState() => _StartScreenState();
+}
+
+class _StartScreenState extends State<StartScreen> {
+  Future<void> gotoNextScreen() async {
+    bool check = await ApiService.isLoggedIn();
+    if (!mounted) {
+      return;
+    }
+    if (check) {
+      Navigator.pushReplacementNamed(context, "/hm");
+    } else {
+      Navigator.pushReplacementNamed(context, "/lg");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,13 +55,8 @@ class StartScreen extends StatelessWidget {
               child: ElevatedButton(
                   style:
                       ElevatedButton.styleFrom(backgroundColor: Colors.purple),
-                  onPressed: () async {
-                    SharedPreferences pref =
-                        await SharedPreferences.getInstance();
-                    if (pref.containsKey("token")) {
-                      Navigator.pushReplacementNamed(context, "/hm");
-                    }
-                    Navigator.pushNamed(context, "/lg");
+                  onPressed: () {
+                    gotoNextScreen();
                   },
                   child: Wrap(
                     spacing: 10,

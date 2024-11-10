@@ -42,6 +42,7 @@ class _HomeState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       key: _scaffoldKey,
       drawer: Drawer(
         backgroundColor: const Color.fromARGB(245, 39, 16, 60),
@@ -54,13 +55,8 @@ class _HomeState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CircleAvatar(
-                child: Icon(
-                  color: const Color.fromARGB(255, 40, 2, 66),
-                  Icons.person,
-                  size: 55,
-                ),
                 radius: 45,
-                backgroundColor: const Color.fromARGB(255, 189, 80, 228),
+                backgroundImage: AssetImage("assets/avatar2.jpg"),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 10, bottom: 8),
@@ -133,12 +129,7 @@ class _HomeState extends State<HomeScreen> {
             child: Padding(
               padding: EdgeInsets.only(left: 10),
               child: CircleAvatar(
-                child: Icon(
-                  color: const Color.fromARGB(255, 40, 2, 66),
-                  Icons.person,
-                  size: 25,
-                ),
-                backgroundColor: const Color.fromARGB(255, 189, 80, 228),
+                backgroundImage: AssetImage("assets/avatar2.jfif"),
               ),
             )),
         title: Text(

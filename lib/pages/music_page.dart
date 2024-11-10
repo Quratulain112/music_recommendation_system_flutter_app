@@ -28,74 +28,74 @@ class MusicPage extends StatelessWidget {
                     color: Colors.white),
               ),
             ),
-            MyListItem(
-              song_name: "song name test",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
-            MyListItem(
-              song_name: "song name",
-              artist_name: "artist name",
-            ),
+          //   MyListItem(
+          //     song_name: "song name test",
+          //     artist_name: "artist name",
+          //   ),
+          //   MyListItem(
+          //     song_name: "song name",
+          //     artist_name: "artist name",
+          //   ),
+          //   MyListItem(
+          //     song_name: "song name",
+          //     artist_name: "artist name",
+          //   ),
+          //   MyListItem(
+          //     song_name: "song name",
+          //     artist_name: "artist name",
+          //   ),
+          //   MyListItem(
+          //     song_name: "song name",
+          //     artist_name: "artist name",
+          //   ),
+          //   MyListItem(
+          //     song_name: "song name",
+          //     artist_name: "artist name",
+          //   ),
+          //   MyListItem(
+          //     song_name: "song name",
+          //     artist_name: "artist name",
+          //   ),
+          //   MyListItem(
+          //     song_name: "song name",
+          //     artist_name: "artist name",
+          //   ),
+          //   MyListItem(
+          //     song_name: "song name",
+          //     artist_name: "artist name",
+          //   ),
+          //   MyListItem(
+          //     song_name: "song name",
+          //     artist_name: "artist name",
+          //   ),
+          //   MyListItem(
+          //     song_name: "song name",
+          //     artist_name: "artist name",
+          //   ),
+          //   MyListItem(
+          //     song_name: "song name",
+          //     artist_name: "artist name",
+          //   ),
+          //   MyListItem(
+          //     song_name: "song name",
+          //     artist_name: "artist name",
+          //   ),
+          //   MyListItem(
+          //     song_name: "song name",
+          //     artist_name: "artist name",
+          //   ),
+          //   MyListItem(
+          //     song_name: "song name",
+          //     artist_name: "artist name",
+          //   ),
+          //   MyListItem(
+          //     song_name: "song name",
+          //     artist_name: "artist name",
+          //   ),
+          //   MyListItem(
+          //     song_name: "song name",
+          //     artist_name: "artist name",
+          //   ),
           ],
         ),
       ),

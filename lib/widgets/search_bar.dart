@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class MySearchBar extends StatelessWidget {
-  const MySearchBar({super.key});
+  final VoidCallback onSend;
+  final TextEditingController searchBarController;
+  const MySearchBar(
+      {super.key, required this.onSend, required this.searchBarController});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +24,7 @@ class MySearchBar extends StatelessWidget {
             ),
             Expanded(
               child: TextField(
+                controller: searchBarController,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   border: InputBorder.none,
@@ -30,12 +34,14 @@ class MySearchBar extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 10),
-              child: Icon(
-                Icons.send,
-                color: Colors.white,
-              ),
-            ),
+                padding: EdgeInsets.only(right: 10),
+                child: IconButton(
+                  onPressed: onSend,
+                  icon: Icon(
+                    Icons.send,
+                    color: Colors.white,
+                  ),
+                )),
           ],
         ),
       ),

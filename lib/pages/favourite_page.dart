@@ -12,6 +12,22 @@ class FavoritePage extends StatefulWidget {
 
 class _FavoritePageState extends State<FavoritePage> {
   List<dynamic> songs = [];
+  Future<void> removeFavorite(String trackId) async {
+    try {
+      final success = await ApiService.removeFavorite(trackId);
+      if (success) {
+        setState(() {
+          songs.removeWhere(
+            (element) => element["track_id"] == trackId,
+          );
+        });
+        showSnackbar("Removed from favorites");
+      } else {
+        showSnackbar("Failed to remove from favorites");
+      }
+    } catch (e) {}
+  }
+
   Future<void> getFavorites() async {
     try {
       final results = await ApiService.fetchFavoritesFromApi();
@@ -85,7 +101,7 @@ class _FavoritePageState extends State<FavoritePage> {
                       album_cover: albumCover,
                       is_favorite: isFavorites,
                       onPressFavorite: () {
-                        // toggleFavorite(trackId, trackName, isFavorites);
+                        removeFavorite(trackId);
                       });
                 },
               ),

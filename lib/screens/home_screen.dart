@@ -74,7 +74,10 @@ class _HomeState extends State<HomeScreen> {
               ),
               ListTile(
                 onTap: () {
-                  setState(() {});
+                  setState(() {
+                    _currentIndex = 0;
+                  });
+                  _scaffoldKey.currentState?.closeDrawer();
                 },
                 leading: Icon(
                   Icons.home,
@@ -86,6 +89,12 @@ class _HomeState extends State<HomeScreen> {
                 ),
               ),
               ListTile(
+                onTap: () {
+                  setState(() {
+                    _currentIndex = 1;
+                  });
+                  _scaffoldKey.currentState?.closeDrawer();
+                },
                 leading: Icon(
                   Icons.person,
                   color: Colors.white70,
@@ -96,6 +105,12 @@ class _HomeState extends State<HomeScreen> {
                 ),
               ),
               ListTile(
+                onTap: () {
+                  setState(() {
+                    _currentIndex = 2;
+                  });
+                  _scaffoldKey.currentState?.closeDrawer();
+                },
                 leading: Icon(
                   Icons.favorite,
                   color: Colors.white70,
@@ -108,7 +123,10 @@ class _HomeState extends State<HomeScreen> {
               Padding(
                 padding: EdgeInsets.only(top: 20),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    ApiService.logout();
+                    Navigator.pushReplacementNamed(context, "/lg");
+                  },
                   child: Text(
                     "Logout",
                     style: TextStyle(color: Colors.white70),

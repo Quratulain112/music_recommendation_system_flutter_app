@@ -1,13 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/utils/api_service.dart';
 import 'package:music_app/widgets/list_item.dart';
 import 'package:music_app/widgets/search_bar.dart';
 
-class DiscoverPage extends StatelessWidget {
-  DiscoverPage({super.key});
+class DiscoverPage extends StatefulWidget {
+  const DiscoverPage({super.key});
 
-  final List<dynamic> songs = [
-    ["SONGS NAME", "ARTIST"],
-  ];
+  @override
+  State<DiscoverPage> createState() => _DiscoverPageState();
+}
+
+class _DiscoverPageState extends State<DiscoverPage> {
+  List<dynamic> songs = [];
+  TextEditingController promptController = TextEditingController();
+  Future<void> searchSongs(String query) async {
+    try {
+      dynamic fetchSongs = await ApiService.fetchSongsByPrompt(query);
+      setState(() {
+        songs = fetchSongs;
+      });
+    } catch (e) {}
+  }
+
+  Future<void> toggleFavorite(
+      String trackId, String trackName, bool isFavorite) async {
+    try {
+      if (!isFavorite) {
+        await ApiService.addFavorite(trackId, trackName);
+        showSnackbar("Added to favorites");
+      } else {
+        await ApiService.removeFavorite(trackId);
+        showSnackbar("Remove from favorites");
+      }
+      setState(() {
+        songs = songs.map((item) {
+          if (item['track_id'] == trackId) {
+            item['is_favorite'] = !isFavorite; // Toggle favorite status
+          }
+          return item;
+        }).toList();
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void showSnackbar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +73,33 @@ class DiscoverPage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: 20),
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.only(top: 15),
-                child: MySearchBar(),
+                child: MySearchBar(
+                    onSend: () {
+                      searchSongs(promptController.text);
+                    },
+                    searchBarController: promptController),
               ),
               Expanded(
                 child: ListView.builder(
                   itemCount: songs.length,
                   itemBuilder: (context, index) {
+                    final item = songs[index];
+                    final trackId = item["track_id"] as String;
+                    final trackName = item["track_name"] as String;
+                    final trackArtists = item["artist_names"] as String;
+                    final isFavorites = item["is_favorite"] as bool;
+                    final albumCover = item["album_cover_64x64"] as String;
                     return MyListItem(
-                        song_name: songs[index][0],
-                        artist_name: songs[index][1]);
+                        track_id: trackId,
+                        song_name: trackName,
+                        artist_name: trackArtists,
+                        album_cover: albumCover,
+                        is_favorite: isFavorites,
+                        onPressFavorite: () {
+                          toggleFavorite(trackId, trackName, isFavorites);
+                        });
                   },
                 ),
               ),

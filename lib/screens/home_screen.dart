@@ -14,7 +14,7 @@ class _HomeState extends State<HomeScreen> {
   List<Widget> _pages = [
     DiscoverPage(),
     MusicPage(),
-    FavouritePage(),
+    FavoritePage(),
   ];
   int _currentIndex = 0;
   String username = "Default\nName";

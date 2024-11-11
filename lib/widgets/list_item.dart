@@ -7,6 +7,8 @@ class MyListItem extends StatelessWidget {
   final String album_cover;
   final bool is_favorite;
   final VoidCallback onPressFavorite;
+  final VoidCallback onTap;
+
   const MyListItem({
     super.key,
     required this.track_id,
@@ -15,6 +17,7 @@ class MyListItem extends StatelessWidget {
     required this.album_cover,
     required this.is_favorite,
     required this.onPressFavorite,
+    required this.onTap,
   });
   Widget _buildAlbumCover() {
     return Image.network(
@@ -51,6 +54,7 @@ class MyListItem extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.only(left: 25, right: 25),
         child: ListTile(
+          onTap: onTap,
           leading: _buildAlbumCover(),
           title: Text(
             song_name,
@@ -68,6 +72,7 @@ class MyListItem extends StatelessWidget {
           trailing: IconButton(
             onPressed: onPressFavorite,
             icon: Icon(Icons.favorite_border),
+            isSelected: is_favorite,
             selectedIcon: Icon(
               Icons.favorite,
               color: Colors.red,

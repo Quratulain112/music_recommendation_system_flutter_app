@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:music_app/utils/api_service.dart';
 import 'package:music_app/widgets/list_item.dart';
 import 'package:music_app/widgets/search_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DiscoverPage extends StatefulWidget {
   const DiscoverPage({super.key});
@@ -92,6 +93,14 @@ class _DiscoverPageState extends State<DiscoverPage> {
                     final isFavorites = item["is_favorite"] as bool;
                     final albumCover = item["album_cover_64x64"] as String;
                     return MyListItem(
+                        onTap: () async {
+                          setState(() {
+                            launchUrl(
+                                Uri.parse(
+                                    "https://open.spotify.com/track/${trackId}"),
+                                mode: LaunchMode.inAppWebView);
+                          });
+                        },
                         track_id: trackId,
                         song_name: trackName,
                         artist_name: trackArtists,

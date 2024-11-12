@@ -96,11 +96,11 @@ class _HomeState extends State<HomeScreen> {
                   _scaffoldKey.currentState?.closeDrawer();
                 },
                 leading: Icon(
-                  Icons.person,
+                  Icons.library_music,
                   color: Colors.white70,
                 ),
                 title: Text(
-                  "Artist",
+                  "Music",
                   style: TextStyle(color: Colors.white70),
                 ),
               ),

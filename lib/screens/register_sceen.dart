@@ -21,6 +21,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _password1Controller = TextEditingController();
   final _password2Controller = TextEditingController();
   final _emailController = TextEditingController();
+  bool _ispasswordvisible1 = false;
+  bool _ispasswordvisible2 = false;
   void _register() async {
     bool success = await ApiService.register(
       _usernameController.text,
@@ -142,10 +144,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: TextFormField(
                       controller: _password1Controller,
                       style: TextStyle(color: Colors.white),
-                      obscureText: true,
+                      obscureText: !_ispasswordvisible1,
                       decoration: InputDecoration(
-                        labelText: "Your Password",
-                      ),
+                          labelText: "Your Password",
+                          suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  _ispasswordvisible1 = !_ispasswordvisible1;
+                                });
+                              },
+                              icon: Icon(
+                                _ispasswordvisible1
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                              ))),
                     ),
                   ),
                   Padding(
@@ -154,10 +166,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: TextFormField(
                       controller: _password2Controller,
                       style: TextStyle(color: Colors.white),
-                      obscureText: true,
+                      obscureText: !_ispasswordvisible2,
                       decoration: InputDecoration(
-                        labelText: " Confirm Password",
-                      ),
+                          labelText: " Confirm Password",
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _ispasswordvisible2 = !_ispasswordvisible2;
+                              });
+                            },
+                            icon: Icon(_ispasswordvisible2
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                          )),
                     ),
                   ),
                   ElevatedButton(

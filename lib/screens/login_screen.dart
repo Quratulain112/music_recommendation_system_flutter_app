@@ -12,6 +12,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _ispasswordvisible = false;
   void _login() async {
     bool success = await ApiService.login(
         _usernameController.text, _passwordController.text);
@@ -33,8 +34,11 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final UserDetails? userobject =
         ModalRoute.of(context)!.settings.arguments as UserDetails?;
-    _usernameController.text = (userobject == null) ? "" : userobject.username;
-    _passwordController.text = (userobject == null) ? "" : userobject.password;
+    if (userobject != null) {
+      _usernameController.text = userobject.username;
+      _passwordController.text = userobject.password;
+    }
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -74,8 +78,20 @@ class _LoginScreenState extends State<LoginScreen> {
               child: TextField(
                 controller: _passwordController,
                 style: TextStyle(color: Colors.white),
-                obscureText: true,
-                decoration: InputDecoration(labelText: "Your Password"),
+                obscureText: !_ispasswordvisible,
+                decoration: InputDecoration(
+                  labelText: "Your Password",
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _ispasswordvisible = !_ispasswordvisible;
+                      });
+                    },
+                    icon: Icon(_ispasswordvisible
+                        ? Icons.visibility
+                        : Icons.visibility_off),
+                  ),
+                ),
               ),
             ),
             ElevatedButton(

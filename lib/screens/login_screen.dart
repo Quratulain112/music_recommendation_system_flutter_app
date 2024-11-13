@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   backgroundImage: AssetImage("assets/logo.jfif"),
                 ),
                 Text(
-                  "MusicApp",
+                  "Melody Flow",
                   style: TextStyle(color: Colors.white),
                 ),
               ])),

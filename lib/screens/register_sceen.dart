@@ -69,8 +69,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   backgroundImage: AssetImage("assets/logo.jfif"),
                 ),
                 Text(
-                  "MusicApp",
-                  style: TextStyle(color: Colors.white),
+                  "Melody Flow",
+                  style:
+                      TextStyle(color: Colors.white, fontFamily: "Streetwear"),
                 ),
               ]),
           leading: IconButton(

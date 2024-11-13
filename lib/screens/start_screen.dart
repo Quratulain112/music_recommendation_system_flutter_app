@@ -50,6 +50,7 @@ class _StartScreenState extends State<StartScreen> {
           children: [
             Image(
                 height: screenHeight * 0.45,
+                width: screenWidth * 0.65,
                 image: AssetImage('assets/headphones.png')),
             Text(
               "enjoy your \nmusic, enjoy \nyour life",

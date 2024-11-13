@@ -23,7 +23,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final _emailController = TextEditingController();
   bool _ispasswordvisible1 = false;
   bool _ispasswordvisible2 = false;
+  bool _isLoading = false;
   void _register() async {
+    setState(() {
+      _isLoading = true;
+    });
     bool success = await ApiService.register(
       _usernameController.text,
       _password1Controller.text,
@@ -44,6 +48,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       );
     }
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
@@ -187,10 +194,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       onPressed: () {
                         _register();
                       },
-                      child: Text(
-                        "Register",
-                        style: TextStyle(color: Colors.white),
-                      ))
+                      child: (!_isLoading)
+                          ? Text(
+                              "Register",
+                              style: TextStyle(color: Colors.white),
+                            )
+                          : SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                              ),
+                            ))
                 ],
               )),
         ));

@@ -13,7 +13,11 @@ class _LoginScreenState extends State<LoginScreen> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _ispasswordvisible = false;
+  bool _isLoading = false;
   void _login() async {
+    setState(() {
+      _isLoading = true;
+    });
     bool success = await ApiService.login(
         _usernameController.text, _passwordController.text);
     if (!mounted) {
@@ -24,10 +28,13 @@ class _LoginScreenState extends State<LoginScreen> {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text("Faild to login"),
+          content: Text("Failed to login"),
         ),
       );
     }
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
@@ -99,10 +106,18 @@ class _LoginScreenState extends State<LoginScreen> {
               onPressed: () {
                 _login();
               },
-              child: const Text(
-                "Login",
-                style: TextStyle(color: Colors.white),
-              ),
+              child: (!_isLoading)
+                  ? const Text(
+                      "Login",
+                      style: TextStyle(color: Colors.white),
+                    )
+                  : SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                      ),
+                    ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 8),

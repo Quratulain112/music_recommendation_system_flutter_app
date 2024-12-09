@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/pages/home_screen.dart';
+import 'package:music_app/screens/home_screen.dart';
 import 'package:music_app/screens/login_screen.dart';
 import 'package:music_app/screens/register_sceen.dart';
+import 'package:music_app/screens/splash_screen.dart';
 import 'package:music_app/screens/start_screen.dart';
 
 void main() {
@@ -13,8 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "/ss",
+      initialRoute: "/sp",
       routes: {
+        "/sp": (context) => SplashScreen(),
         "/ss": (context) => StartScreen(),
         "/rg": (contxt) => RegisterScreen(),
         "/hm": (context) => HomeScreen(),
